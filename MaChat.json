@@ -1,0 +1,11 @@
+{
+  "id": "MaChat",
+  "name": "MaChat",
+  "author": "agak",
+  "description": "Draw text on map",
+  "version": "v0.1",
+  "has_pck": false,
+  "has_dll": true,
+  "dependencies": ["BaseLib"],
+  "affects_gameplay": false
+}
