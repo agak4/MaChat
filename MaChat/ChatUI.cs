@@ -1,4 +1,4 @@
-﻿using Godot;
+using Godot;
 using System;
 
 namespace MapChat
@@ -20,9 +20,6 @@ namespace MapChat
         private LineEdit? _textInput;      // 텍스트 입력 필드
         private Button? _sendButton;       // 전송 버튼
         private Label? _hintLabel;         // 힌트 텍스트 ("Enter: 전송, ESC: 취소")
-
-        // UI가 현재 표시 중인지 여부
-        public bool IsVisible => Visible;
 
         // Called when the node enters the scene tree for the first time.
         public override void _Ready()

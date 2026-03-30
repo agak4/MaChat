@@ -1,4 +1,4 @@
-﻿using Godot;
+using Godot;
 using BaseLib; // BaseLib 의존성
 using System;
 
@@ -8,7 +8,7 @@ namespace MapChat
     /// MapChat 모드의 메인 클래스입니다.
     /// 게임이 모드를 로드할 때 Initialize()가 호출됩니다.
     /// </summary>
-    public class MapChatMod : IMod
+    public class MapChatMod
     {
         // 모드 인스턴스 (싱글턴 패턴)
         public static MapChatMod? Instance { get; private set; }
@@ -75,24 +75,12 @@ namespace MapChat
         /// <summary>
         /// UI 노드를 생성하고 게임 장면에 추가합니다.
         /// </summary>
-        private void SetupUI()
+        private void SetupUi()
         {
-            // ChatUI 생성
             _chatUI = new ChatUI();
-            
-            // 텍스트 제출 이벤트 구독
             _chatUI.OnMessageSubmitted += OnMessageSubmitted;
-            
-            // ChatDisplay 생성
             _chatDisplay = new ChatDisplay(_config);
-            
-            // 게임 장면의 루트에 추가
-            // ⚠️ 주의: 실제 게임 구조에 따라 적절한 부모 노드를 찾아야 합니다
-            var root = Engine.GetMainLoop().Root;
-            root.AddChild(_chatUI);
-            root.AddChild(_chatDisplay);
-            
-            GD.Print("[MapChat] UI 노드 추가 완료");
+            GD.Print("[MapChat] UI 노드 객체 생성 완료 (아직 씬에 추가되지 않음)");
         }
 
         /// <summary>
@@ -119,7 +107,7 @@ namespace MapChat
         {
             if (_chatUI == null) return;
             
-            if (_chatUI.IsVisible)
+            if (_chatUI.Visible)
                 _chatUI.CloseChat();
             else
                 _chatUI.OpenChat();
@@ -156,7 +144,7 @@ namespace MapChat
         public void Update()
         {
             // 채팅창이 열려 있는 동안은 단축키 무시
-            if (_chatUI?.IsVisible == true) return;
+            if (_chatUI?.Visible == true) return;
             
             // 단축키 감지
             if (Input.IsKeyPressed(_hotkeyCode))

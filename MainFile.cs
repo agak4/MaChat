@@ -1,5 +1,6 @@
 using Godot;
 using HarmonyLib;
+using MapChat;
 using MegaCrit.Sts2.Core.Modding;
 
 namespace MaChat;
@@ -14,7 +15,9 @@ public partial class MainFile : Node
     public static void Initialize()
     {
         Harmony harmony = new(ModId);
-
         harmony.PatchAll();
+        
+        var mapChat = new MapChatMod();
+        mapChat.Initialize();
     }
 }
